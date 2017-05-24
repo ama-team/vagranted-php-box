@@ -1,0 +1,35 @@
+assets:
+  - resources/*
+templates:
+  - Vagrantfile.twig
+context:
+  name: default
+  box: ubuntu/trusty64
+  services:
+    mysql:
+      enabled: true
+      version: '5.7'
+    mailhog:
+      enabled: true
+      version: 1.0.0
+    pma:
+      enabled: true
+      version: 4.7.0
+  root: /var/www/application
+  ports:
+    1025:
+      target: 1025
+      auto_correct: true
+    3306:
+      target: 3306
+      auto_correct: true
+    8080:
+      target: 80
+      auto_correct: true
+  mounts:
+    .:
+      target: /var/www/application
+      user: www-data
+      group: www-data
+  provision:
+    attributes:
