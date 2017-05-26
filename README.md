@@ -60,4 +60,14 @@ vendor/bin/vagranted compile
 
 You can use you Vagrant box now.
 
+## FAQ
+
+### Why 32bit / why not using docker?
+
+Sadly, our team works in different environments - part on Windows, part
+on Linux. Because of that, it is sometimes required to launch VM as if
+it would be launched on the colleagues machine which leads to necessity
+of having Vagrant box running inside Windows VM on Linux host (or vice 
+versa).
+
   [vagranted]: https://github.com/ama-team/vagranted.git
