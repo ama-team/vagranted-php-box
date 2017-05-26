@@ -1,0 +1,10 @@
+<% @settings.each_pair do |section, options| -%>
+[<%= section %>]
+
+<% options.each_pair do |key, value| %>
+<% if value %>
+<%= key %> = <% value %>
+<% end %>
+<% end %>
+
+<% end %>

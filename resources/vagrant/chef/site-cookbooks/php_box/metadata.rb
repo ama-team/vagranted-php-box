@@ -1,0 +1,7 @@
+name             'php_box'
+maintainer       'AMA Team'
+maintainer_email 'dev@amagroup.ru'
+license          'mit'
+description      'Installs/Configures php_box'
+long_description ''
+version          '0.1.0'

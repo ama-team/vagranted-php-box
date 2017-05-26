@@ -1,0 +1,50 @@
+server {
+  listen [::]:80 default_server ipv6only=off;
+  root /var/www/application;
+  access_log /var/log/application/access.log;
+  error_log /var/log/application/error.log<% if @debug %> debug<% end %>;
+  index index.html index.php;
+
+  location / {
+    try_files $uri $uri/ /index.php;
+
+    location ~ \.php$ {
+      include fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_index index.php;
+      fastcgi_pass unix:///var/run/php/php7.0-fpm.sock;
+    }
+  }
+
+  location /_smtp {
+    return 301 ' /_smtp/';
+  }
+
+  location /_smtp/ {
+    proxy_pass http://localhost:8025/;
+  }
+
+  location /_pma {
+    return 301 ' /_pma/';
+  }
+
+  location /_pma/ {
+    proxy_pass http://localhost:8080/;
+  }
+
+  location /_log {
+    return 301 ' /_logs/';
+  }
+
+  location /_logs {
+    return 301 ' /_logs/';
+  }
+
+  location /_logs/ {
+    alias /var/log/application/;
+    autoindex on;
+    types {
+      text/plain log;
+    }
+  }
+}

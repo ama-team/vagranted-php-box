@@ -4,17 +4,7 @@ templates:
   - Vagrantfile.twig
 context:
   name: default
-  box: ubuntu/trusty64
-  services:
-    mysql:
-      enabled: true
-      version: '5.7'
-    mailhog:
-      enabled: true
-      version: 1.0.0
-    pma:
-      enabled: true
-      version: 4.7.0
+  box: ubuntu/xenial32
   root: /var/www/application
   ports:
     1025:
@@ -31,5 +21,20 @@ context:
       target: /var/www/application
       user: www-data
       group: www-data
-  provision:
-    attributes:
+  application:
+    database:
+      name: application
+  php:
+    configuration:
+      xdebug.profiler_enable_trigger: '1'
+  mysql:
+    password: root
+    configuration:
+      mysqld:
+        sql_mode: 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+  mailhog:
+    version:
+      server: '1.0.0'
+      sendmail: '0.2.0'
+  pma:
+    version: '4.7.0'

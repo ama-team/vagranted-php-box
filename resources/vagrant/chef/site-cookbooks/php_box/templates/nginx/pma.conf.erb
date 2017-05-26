@@ -1,0 +1,14 @@
+server {
+  listen [::]:8080 ipv6only=off;
+  root /var/www/pma;
+  index index.html index.php;
+  server_name _pma;
+
+  location / {
+    try_files $uri $uri/ /index.php;
+  }
+
+  location ~ \.php$ {
+    include fcgi.conf;
+  }
+}
