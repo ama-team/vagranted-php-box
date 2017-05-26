@@ -49,7 +49,7 @@ composer require --dev ama-team/vagranted
 ```yml
 # vagranted.yml
 dependencies:
-  php-box: git+https://github.com/ama-team/vagranted-php-box.git
+  php-box: 'git+https://github.com/ama-team/vagranted-php-box.git#0.1.0'
 ```
 
 - Compile it
